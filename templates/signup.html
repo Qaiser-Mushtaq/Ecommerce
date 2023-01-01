@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <style>
+    body{
+        background-image: url("https://images.pexels.com/photos/450035/pexels-photo-450035.jpeg?cs=srgb&dl=pexels-mateusz-dach-450035.jpg&fm=jpg");
+        background-size: 1550px 1000px;
+        background-repeat: no-repeat;
+        
+    }
+  </style>
+    <div class="container bg-dark pb-3 ">
+        <div class="p-4 m-4 ">
+            <div class="col-lg-5 mx-auto ">
+                {% if error %}
+                  <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">
+                        {{error}}
+                    </h4>
+                    <p></p>
+                    <p class="mb-0"></p>
+                  </div>
+                {% endif %}
+                <h3 class=" mx-auto pt-4 pb-2 text-center text-info"> Create an Account</h3>
+                <form action="/validate/" method="POST" class="h4 text-light">
+                    
+                     {% csrf_token %}
+                     <div class="form-group text-center ">
+                        <label for="firstname">First Name</label>
+                        <input type="text" required name="firstname" id="" value="{{values.first_name}}" class="form-control">
+                    </div>
+
+                    <!--lastname-->
+                    <div class="form-group text-center">
+                        <label for="lastname">Last Name</label>
+                        <input required type="text" name="lastname" id="lastname" value="{{values.last_name}}" class="form-control">
+                    </div>
+
+                    <!--email-->
+                    <div class="form-group text-center">
+                        <label for="email">Email</label>
+                        <input type="email" required name="email" id="" class="form-control" value="{{values.email}}" placeholder="abc@gmail.com">
+                    </div>
+
+                    <!--password-->
+                    <div class="form-group text-center">
+                        <label for="password">Password</label>
+                        <input required type="password" name="password" id="" class="form-control">
+                    </div>
+                    
+                    <!--phone-->
+                    <div class="form-group text-center">
+                        <label for="phone">Phone</label>
+                        <input required type="phone" name="phone" id="" value="{{values.phone}}" class="form-control">
+                    </div>
+
+                    <!--button-->
+                    <div class="form-group ">
+                        <input class="btn btn-sm btn-info float-right" type="submit" name="submit" value="Create an account" id="">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

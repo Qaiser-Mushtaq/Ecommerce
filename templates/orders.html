@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load cart %}
+{% load custom %}
+{% load orders %}
+<style>
+    
+</style>
+<div class="container">
+    
+  <div class="border rounded my-5 ">
+    <p class="display-4">My Orders</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S No</th>
+          <th>Product</th>
+          <th>Date</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        
+        <tr>
+          <td>{{forloop.counter}}</td>
+          
+          <td>{{order.product}}</td>
+          <td>{{order.price|currency}}</td>
+          <td>{{order.date}}</td>
+          <td>{{order.quantity}}</td>
+          <td>{{order|order_price_total:order.quantity}}</td>
+            {% if order.status %}
+              <td><small class="badge badge-success">Completed</small></td>
+            {%else%}
+            <td><small class="badge badge-warning">Pending</small></td>
+            
+              {% endif %}
+        </tr>
+        {% endfor %}
+        
+        
+      </tbody>
+    </table>
+    
+
+</div>
+
+
+
+
+
+
+{% endblock content %}
